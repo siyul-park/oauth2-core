@@ -1,5 +1,5 @@
 const AuthorizationRequest = require('../../lib/request/authorization-request');
-const responseType = require('../../lib/request/response-type');
+const responseType = require('../../lib/request/type');
 
 const validate = require('../../lib/authorization-code-grant/authorization/validate');
 
