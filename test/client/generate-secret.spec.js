@@ -1,7 +1,14 @@
 const generateSecrete = require('../../lib/client/generate/generate-secret');
 
+const register = require('./register-client-data-accessor');
+
 // eslint-disable-next-line no-undef
 describe('Client', () => {
+  // eslint-disable-next-line no-undef
+  beforeAll(() => {
+    register();
+  });
+
   // eslint-disable-next-line no-undef
   describe('Identifier', () => {
     // eslint-disable-next-line no-undef
