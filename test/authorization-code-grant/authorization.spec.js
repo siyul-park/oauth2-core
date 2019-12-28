@@ -1,8 +1,9 @@
+const setUp = require('../set-up');
+
 const AuthorizationRequest = require('../../lib/request/authorization-request');
 const responseType = require('../../lib/request/type');
 
 const generatePublicClient = require('../../lib/client/generate/generate-public-client');
-const register = require('../client/mock/register-client-data-accessor');
 const authorization = require('../../lib/authorization-code-grant/authorization');
 
 const InvalidRequestError = require('../../lib/error/invalid-request');
@@ -12,11 +13,13 @@ const InvalidScope = require('../../lib/error/invalid-scope');
 
 const errorPool = require('../../lib/error/pool');
 
+const Scope = require('../../lib/scope/scope');
+
 // eslint-disable-next-line no-undef
 describe('Authorization Code Grant', () => {
   // eslint-disable-next-line no-undef
   beforeAll(() => {
-    register();
+    setUp();
   });
 
   // eslint-disable-next-line no-undef
@@ -25,10 +28,12 @@ describe('Authorization Code Grant', () => {
     test('Authorization Request Success', async () => {
       const client = await generatePublicClient();
       const request = new AuthorizationRequest({
-        responseType: responseType.CODE, clientId: client.identifier,
+        responseType: responseType.CODE,
+        clientId: client.identifier,
+        scope: [Scope.ACCESS_TOKEN.CREATE],
       });
 
-      await authorization(request);
+      const response = await authorization(request);
     });
 
     // eslint-disable-next-line no-undef

@@ -1,6 +1,6 @@
 const generatePublicClient = require('../../lib/client/generate/generate-public-client');
 
-const register = require('./mock/register-client-data-accessor');
+const setUp = require('../set-up');
 
 const ClientType = require('../../lib/client/client-type');
 
@@ -8,7 +8,7 @@ const ClientType = require('../../lib/client/client-type');
 describe('Client', () => {
   // eslint-disable-next-line no-undef
   beforeAll(() => {
-    register();
+    setUp();
   });
 
   // eslint-disable-next-line no-undef
