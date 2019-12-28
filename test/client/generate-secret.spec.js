@@ -1,6 +1,6 @@
 const generateSecrete = require('../../lib/client/generate/generate-secret');
 
-const register = require('./register-client-data-accessor');
+const register = require('./mock/register-client-data-accessor');
 
 // eslint-disable-next-line no-undef
 describe('Client', () => {
