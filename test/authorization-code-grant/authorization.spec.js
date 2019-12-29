@@ -33,7 +33,7 @@ describe('Authorization Code Grant', () => {
         scope: [Scope.ACCESS_TOKEN.CREATE],
       });
 
-      const response = await authorization(request);
+      await authorization(request);
     });
 
     // eslint-disable-next-line no-undef
