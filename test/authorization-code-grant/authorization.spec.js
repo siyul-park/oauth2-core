@@ -1,15 +1,14 @@
 const setUp = require('../set-up');
 
 const AuthorizationRequest = require('../../lib/request/authorization-request');
-const responseType = require('../../lib/response/authorization-type');
+const responseType = require('../../lib/type/authorization-type');
 
 const generatePublicClient = require('../../lib/client/generate/generate-public-client');
 const authorization = require('../../lib/authorization-code-grant/authorization');
 
-const InvalidRequestError = require('../../lib/error/invalid-request');
-const UnsupportedResponseType = require('../../lib/error/unsupported-response-type');
-const UnauthorizedClient = require('../../lib/error/unauthorized-client');
-const InvalidScope = require('../../lib/error/invalid-scope');
+const {
+  InvalidRequestError, UnsupportedTypeError, InvalidScopeError, UnauthorizedClientError,
+} = require('../../lib/error');
 
 const errorPool = require('../../lib/error/pool');
 
@@ -50,7 +49,7 @@ describe('Authorization Code Grant', () => {
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
-        expect(e).toEqual(errorPool.get(UnsupportedResponseType));
+        expect(e).toEqual(errorPool.get(UnsupportedTypeError));
       }
     });
 
@@ -102,7 +101,7 @@ describe('Authorization Code Grant', () => {
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
-        expect(e).toEqual(errorPool.get(UnauthorizedClient));
+        expect(e).toEqual(errorPool.get(UnauthorizedClientError));
       }
     });
 
@@ -120,7 +119,7 @@ describe('Authorization Code Grant', () => {
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
-        expect(e).toEqual(errorPool.get(InvalidScope));
+        expect(e).toEqual(errorPool.get(InvalidScopeError));
       }
     });
   });
