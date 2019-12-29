@@ -67,7 +67,7 @@ describe('Authorization Code Grant', () => {
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
-        expect(e).toEqual(errorPool.get(InvalidRequestError));
+        expect(e).toEqual(errorPool.get(UnsupportedTypeError));
       }
     });
 
