@@ -13,6 +13,7 @@ const {
 const errorPool = require('../../lib/error/pool');
 
 const Scope = require('../../lib/scope/scope');
+const getValidatedToken = require('../../lib/token/get-validated-token');
 
 // eslint-disable-next-line no-undef
 describe('Authorization Code Grant', () => {
@@ -132,6 +133,24 @@ describe('Authorization Code Grant', () => {
         // eslint-disable-next-line no-undef
         expect(e).toEqual(errorPool.get(InvalidScopeError));
       }
+    });
+
+    // eslint-disable-next-line no-undef
+    test('Authorization Request By Token Success', async () => {
+      const client = await generatePublicClient();
+      const request = new AuthorizationRequest({
+        responseType: responseType.CODE,
+        clientId: client.id,
+        scope: [Scope.ACCESS_TOKEN.CREATE],
+      });
+
+      const authorization = await generateAuthorization(request);
+      const token = authorization.generateToken(1000);
+
+      const newRequest = getValidatedToken(token).request;
+
+      const newAuthorization = await generateAuthorization(newRequest);
+      newAuthorization.allow();
     });
   });
 });
