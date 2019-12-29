@@ -18,9 +18,9 @@ describe('Client', () => {
       const client = await generateConfidentialClient();
 
       // eslint-disable-next-line no-undef
-      expect(client.identifier).toHaveLength(32);
+      expect(client.id).toHaveLength(32);
       // eslint-disable-next-line no-undef
-      expect(client.identifier).toEqual(expect.stringMatching(/[a-z0-9]+/));
+      expect(client.id).toEqual(expect.stringMatching(/[a-z0-9]+/));
 
       // eslint-disable-next-line no-undef
       expect(client.secret).toHaveLength(32);
@@ -44,7 +44,7 @@ describe('Client', () => {
         // eslint-disable-next-line no-undef
         expect(
           // eslint-disable-next-line max-len
-          clients.every((createdClient) => createdClient.identifier !== client.identifier && createdClient.secret !== client.secret),
+          clients.every((createdClient) => createdClient.id !== client.id && createdClient.secret !== client.secret),
         ).toBeTruthy();
 
         clients.push(client);

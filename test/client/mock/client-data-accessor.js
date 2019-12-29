@@ -11,8 +11,8 @@ class MockClientDataAccessor extends ClientDataAccessor {
   }
 
   // eslint-disable-next-line no-unused-vars,class-methods-use-this
-  async findByIdentifier(identifier) {
-    return clients.find((registerClient) => registerClient.identifier === identifier);
+  async findById(id) {
+    return clients.find((registerClient) => registerClient.id === id);
   }
 
   // eslint-disable-next-line class-methods-use-this

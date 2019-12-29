@@ -13,29 +13,29 @@ describe('Client', () => {
   describe('Identifier', () => {
     // eslint-disable-next-line no-undef
     test('Generate Identifier', () => {
-      const identifier = generateIdentifier();
+      const id = generateIdentifier();
 
       // eslint-disable-next-line no-undef
-      expect(identifier).toHaveLength(32);
+      expect(id).toHaveLength(32);
       // eslint-disable-next-line no-undef
-      expect(identifier).toEqual(expect.stringMatching(/[a-z0-9]+/));
+      expect(id).toEqual(expect.stringMatching(/[a-z0-9]+/));
     });
 
     // eslint-disable-next-line no-undef
     test('Generate Identifier And Check Create Others', () => {
       const repeatTime = 10000;
 
-      const identifiers = [];
+      const ids = [];
       // eslint-disable-next-line no-plusplus
       for (let i = 0; i < repeatTime; i++) {
-        const identifier = generateIdentifier();
+        const id = generateIdentifier();
 
         // eslint-disable-next-line no-undef
         expect(
-          identifiers.every((createdIdentifier) => createdIdentifier !== identifier),
+          ids.every((createdId) => createdId !== id),
         ).toBeTruthy();
 
-        identifiers.push(identifier);
+        ids.push(id);
       }
     });
   });

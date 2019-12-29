@@ -29,7 +29,7 @@ describe('Authorization Code Grant', () => {
       const client = await generatePublicClient();
       const request = new AuthorizationRequest({
         responseType: responseType.CODE,
-        clientId: client.identifier,
+        clientId: client.id,
         scope: [Scope.ACCESS_TOKEN.CREATE],
       });
 
@@ -40,7 +40,7 @@ describe('Authorization Code Grant', () => {
     test('Authorization Request Fail Because responseType is not code', async () => {
       const client = await generatePublicClient();
       const request = new AuthorizationRequest({
-        responseType: '', clientId: client.identifier,
+        responseType: '', clientId: client.id,
       });
 
       try {
@@ -58,7 +58,7 @@ describe('Authorization Code Grant', () => {
     test('Authorization Request Fail Because responseType is null', async () => {
       const client = await generatePublicClient();
       const request = new AuthorizationRequest({
-        responseType: null, clientId: client.identifier,
+        responseType: null, clientId: client.id,
       });
 
       try {
@@ -110,7 +110,7 @@ describe('Authorization Code Grant', () => {
     test('Authorization Request Fail Because scope is not supported', async () => {
       const client = await generatePublicClient();
       const request = new AuthorizationRequest({
-        responseType: responseType.CODE, clientId: client.identifier, scope: ['other'],
+        responseType: responseType.CODE, clientId: client.id, scope: ['other'],
       });
 
       try {
