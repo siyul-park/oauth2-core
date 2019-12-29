@@ -4,7 +4,7 @@ const AuthorizationRequest = require('../../lib/request/authorization-request');
 const responseType = require('../../lib/type/authorization-type');
 
 const generatePublicClient = require('../../lib/client/generate/generate-public-client');
-const authorization = require('../../lib/authorization-code-grant/authorization');
+const generateAuthorization = require('../../lib/authorization-code-grant/generate-authorization');
 
 const {
   InvalidRequestError, UnsupportedTypeError, InvalidScopeError, UnauthorizedClientError,
@@ -32,7 +32,8 @@ describe('Authorization Code Grant', () => {
         scope: [Scope.ACCESS_TOKEN.CREATE],
       });
 
-      await authorization(request);
+      const authorization = await generateAuthorization(request);
+      authorization.allow();
     });
 
     // eslint-disable-next-line no-undef
@@ -45,7 +46,9 @@ describe('Authorization Code Grant', () => {
       try {
         // eslint-disable-next-line no-undef
         expect.assertions(1);
-        await authorization(request);
+
+        const authorization = await generateAuthorization(request);
+        authorization.allow();
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
@@ -63,7 +66,9 @@ describe('Authorization Code Grant', () => {
       try {
         // eslint-disable-next-line no-undef
         expect.assertions(1);
-        await authorization(request);
+
+        const authorization = await generateAuthorization(request);
+        authorization.allow();
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
@@ -80,7 +85,9 @@ describe('Authorization Code Grant', () => {
       try {
         // eslint-disable-next-line no-undef
         expect.assertions(1);
-        await authorization(request);
+
+        const authorization = await generateAuthorization(request);
+        authorization.allow();
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
@@ -97,7 +104,9 @@ describe('Authorization Code Grant', () => {
       try {
         // eslint-disable-next-line no-undef
         expect.assertions(1);
-        await authorization(request);
+
+        const authorization = await generateAuthorization(request);
+        authorization.allow();
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
@@ -115,7 +124,9 @@ describe('Authorization Code Grant', () => {
       try {
         // eslint-disable-next-line no-undef
         expect.assertions(1);
-        await authorization(request);
+
+        const authorization = await generateAuthorization(request);
+        authorization.allow();
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
