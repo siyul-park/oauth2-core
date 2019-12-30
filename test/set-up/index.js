@@ -1,8 +1,8 @@
-const clientRegister = require('../mock/register');
+const MockRegister = require('../mock/register');
 const TokenRegister = require('../token/register');
 
 function setUp() {
-  clientRegister();
+  MockRegister();
   TokenRegister();
 }
 
