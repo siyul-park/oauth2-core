@@ -32,7 +32,7 @@ describe('Authorization Code Grant', () => {
       });
 
       const authorization = await authorizationGenerator.generate(authorizationRequest);
-      const authorizationResponse = authorization.allow();
+      const authorizationResponse = await authorization.allow();
 
       const accessTokenRequest = new AccessTokenRequest({
         grantType: AccessTokenGrantType.AUTHORIZATION_CODE,

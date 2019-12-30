@@ -1,4 +1,4 @@
-const clientRegister = require('../client/mock/register-client-data-accessor');
+const clientRegister = require('../mock/register');
 const TokenRegister = require('../token/register');
 
 function setUp() {

@@ -9,9 +9,12 @@ const GenerateClientRequest = require('../../lib/request/generate-client-request
 const { generate, generateByToken } = require('../../lib/authorization-code-grant/authorization');
 
 const {
-  InvalidRequestError, UnsupportedTypeError, InvalidScopeError, UnauthorizedClientError,
+  InvalidRequestError,
+  UnsupportedTypeError,
+  InvalidScopeError,
+  UnauthorizedClientError,
+  InvalidTokenError,
 } = require('../../lib/error');
-
 const errorPool = require('../../lib/error/pool');
 
 // eslint-disable-next-line no-undef
@@ -34,7 +37,7 @@ describe('Authorization Code Grant', () => {
       });
 
       const authorization = await generate(request);
-      authorization.allow();
+      await authorization.allow();
     });
 
     // eslint-disable-next-line no-undef
@@ -52,7 +55,7 @@ describe('Authorization Code Grant', () => {
         expect.assertions(1);
 
         const authorization = await generate(request);
-        authorization.allow();
+        await authorization.allow();
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
@@ -75,7 +78,7 @@ describe('Authorization Code Grant', () => {
         expect.assertions(1);
 
         const authorization = await generate(request);
-        authorization.allow();
+        await authorization.allow();
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
@@ -94,7 +97,7 @@ describe('Authorization Code Grant', () => {
         expect.assertions(1);
 
         const authorization = await generate(request);
-        authorization.allow();
+        await authorization.allow();
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
@@ -113,7 +116,7 @@ describe('Authorization Code Grant', () => {
         expect.assertions(1);
 
         const authorization = await generate(request);
-        authorization.allow();
+        await authorization.allow();
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
@@ -136,7 +139,7 @@ describe('Authorization Code Grant', () => {
         expect.assertions(1);
 
         const authorization = await generate(request);
-        authorization.allow();
+        await authorization.allow();
         // eslint-disable-next-line no-undef
       } catch (e) {
         // eslint-disable-next-line no-undef
@@ -155,10 +158,39 @@ describe('Authorization Code Grant', () => {
       });
 
       const authorization = await generate(request);
-      const token = authorization.generateToken(1000);
+      const token = await authorization.generateToken();
 
       const authorizationByToken = await generateByToken(token);
-      authorizationByToken.allow();
+      await authorizationByToken.allow();
+    });
+
+    // eslint-disable-next-line no-undef
+    test('Authorization Request By Token Fail because token use twice', async () => {
+      const client = await generatePublicClient(
+        new GenerateClientRequest('Test', 'For library test', null),
+      );
+
+      const request = new AuthorizationRequest({
+        responseType: AuthorizationType.AUTHORIZATION_CODE, clientId: client.id,
+      });
+
+      const authorization = await generate(request);
+      const token = await authorization.generateToken();
+
+      let authorizationByToken = await generateByToken(token);
+      await authorizationByToken.allow();
+
+      try {
+        // eslint-disable-next-line no-undef
+        expect.assertions(1);
+
+        authorizationByToken = await generateByToken(token);
+        await authorizationByToken.allow();
+        // eslint-disable-next-line no-undef
+      } catch (e) {
+        // eslint-disable-next-line no-undef
+        expect(e).toEqual(errorPool.get(InvalidTokenError));
+      }
     });
   });
 });
