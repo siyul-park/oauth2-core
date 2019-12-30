@@ -1,9 +1,11 @@
 const setUp = require('../set-up');
 
-const AuthorizationRequest = require('../../lib/request/authorization-request');
+const AuthorizationRequest = require('../../lib/request/generate-authorization-request');
 const AuthorizationType = require('../../lib/type/authorization-type');
 
 const generatePublicClient = require('../../lib/client/generate/generate-public-client');
+const GenerateClientRequest = require('../../lib/request/generate-client-request');
+
 const { generate, generateByToken } = require('../../lib/authorization-code-grant/authorization');
 
 const {
@@ -11,8 +13,6 @@ const {
 } = require('../../lib/error');
 
 const errorPool = require('../../lib/error/pool');
-
-const Scope = require('../../lib/scope/scope');
 
 // eslint-disable-next-line no-undef
 describe('Authorization Code Grant', () => {
@@ -25,11 +25,12 @@ describe('Authorization Code Grant', () => {
   describe('Authorization Request', () => {
     // eslint-disable-next-line no-undef
     test('Authorization Request Success', async () => {
-      const client = await generatePublicClient();
+      const client = await generatePublicClient(
+        new GenerateClientRequest('Test', 'For library test', null),
+      );
+
       const request = new AuthorizationRequest({
-        responseType: AuthorizationType.CODE,
-        clientId: client.id,
-        scope: [Scope.ACCESS_TOKEN.CREATE],
+        responseType: AuthorizationType.AUTHORIZATION_CODE, clientId: client.id,
       });
 
       const authorization = await generate(request);
@@ -38,7 +39,10 @@ describe('Authorization Code Grant', () => {
 
     // eslint-disable-next-line no-undef
     test('Authorization Request Fail Because responseType is not code', async () => {
-      const client = await generatePublicClient();
+      const client = await generatePublicClient(
+        new GenerateClientRequest('Test', 'For library test', null),
+      );
+
       const request = new AuthorizationRequest({
         responseType: '', clientId: client.id,
       });
@@ -58,7 +62,10 @@ describe('Authorization Code Grant', () => {
 
     // eslint-disable-next-line no-undef
     test('Authorization Request Fail Because responseType is null', async () => {
-      const client = await generatePublicClient();
+      const client = await generatePublicClient(
+        new GenerateClientRequest('Test', 'For library test', null),
+      );
+
       const request = new AuthorizationRequest({
         responseType: null, clientId: client.id,
       });
@@ -79,7 +86,7 @@ describe('Authorization Code Grant', () => {
     // eslint-disable-next-line no-undef
     test('Authorization Request Fail Because clientId is null', async () => {
       const request = new AuthorizationRequest({
-        responseType: AuthorizationType.CODE, clientId: null,
+        responseType: AuthorizationType.AUTHORIZATION_CODE, clientId: null,
       });
 
       try {
@@ -98,7 +105,7 @@ describe('Authorization Code Grant', () => {
     // eslint-disable-next-line no-undef
     test('Authorization Request Fail Because responseType is not code', async () => {
       const request = new AuthorizationRequest({
-        responseType: AuthorizationType.CODE, clientId: '',
+        responseType: AuthorizationType.AUTHORIZATION_CODE, clientId: '',
       });
 
       try {
@@ -116,9 +123,12 @@ describe('Authorization Code Grant', () => {
 
     // eslint-disable-next-line no-undef
     test('Authorization Request Fail Because scope is not supported', async () => {
-      const client = await generatePublicClient();
+      const client = await generatePublicClient(
+        new GenerateClientRequest('Test', 'For library test', null),
+      );
+
       const request = new AuthorizationRequest({
-        responseType: AuthorizationType.CODE, clientId: client.id, scope: ['other'],
+        responseType: AuthorizationType.AUTHORIZATION_CODE, clientId: client.id, scope: ['other'],
       });
 
       try {
@@ -136,11 +146,12 @@ describe('Authorization Code Grant', () => {
 
     // eslint-disable-next-line no-undef
     test('Authorization Request By Token Success', async () => {
-      const client = await generatePublicClient();
+      const client = await generatePublicClient(
+        new GenerateClientRequest('Test', 'For library test', null),
+      );
+
       const request = new AuthorizationRequest({
-        responseType: AuthorizationType.CODE,
-        clientId: client.id,
-        scope: [Scope.ACCESS_TOKEN.CREATE],
+        responseType: AuthorizationType.AUTHORIZATION_CODE, clientId: client.id,
       });
 
       const authorization = await generate(request);

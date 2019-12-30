@@ -1,4 +1,5 @@
 const generatePublicClient = require('../../lib/client/generate/generate-public-client');
+const GenerateClientRequest = require('../../lib/request/generate-client-request');
 
 const setUp = require('../set-up');
 
@@ -15,7 +16,9 @@ describe('Client', () => {
   describe('Public Client', () => {
     // eslint-disable-next-line no-undef
     test('Generate Public Client', async () => {
-      const client = await generatePublicClient();
+      const client = await generatePublicClient(
+        new GenerateClientRequest('Test', 'For library test', null),
+      );
 
       // eslint-disable-next-line no-undef
       expect(client.id).toHaveLength(32);
@@ -37,7 +40,9 @@ describe('Client', () => {
       // eslint-disable-next-line no-plusplus
       for (let i = 0; i < repeatTime; i++) {
         // eslint-disable-next-line no-await-in-loop
-        const client = await generatePublicClient();
+        const client = await generatePublicClient(
+          new GenerateClientRequest('Test', 'For library test', null),
+        );
 
         // eslint-disable-next-line no-undef
         expect(

@@ -1,4 +1,5 @@
 const generateConfidentialClient = require('../../lib/client/generate/generate-confidential-client');
+const GenerateClientRequest = require('../../lib/request/generate-client-request');
 
 const setUp = require('../set-up');
 
@@ -15,7 +16,9 @@ describe('Client', () => {
   describe('Confidential Client', () => {
     // eslint-disable-next-line no-undef
     test('Generate Confidential Client', async () => {
-      const client = await generateConfidentialClient();
+      const client = await generateConfidentialClient(
+        new GenerateClientRequest('Test', 'For library test', null),
+      );
 
       // eslint-disable-next-line no-undef
       expect(client.id).toHaveLength(32);
@@ -39,7 +42,9 @@ describe('Client', () => {
       // eslint-disable-next-line no-plusplus
       for (let i = 0; i < repeatTime; i++) {
         // eslint-disable-next-line no-await-in-loop
-        const client = await generateConfidentialClient();
+        const client = await generateConfidentialClient(
+          new GenerateClientRequest('Test', 'For library test', null),
+        );
 
         // eslint-disable-next-line no-undef
         expect(
