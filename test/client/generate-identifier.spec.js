@@ -1,4 +1,4 @@
-const generateIdentifier = require('../../lib/client/generate/generate-identifier');
+const generateIdentifier = require('../../lib/client/generate/identifier');
 
 const setUp = require('../set-up');
 

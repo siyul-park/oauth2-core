@@ -1,4 +1,4 @@
-const generateSecrete = require('../../lib/client/generate/generate-secret');
+const generateSecrete = require('../../lib/client/generate/secret');
 
 const setUp = require('../set-up');
 

@@ -1,4 +1,4 @@
-const generateConfidentialClient = require('../../lib/client/generate/generate-confidential-client');
+const generateConfidentialClient = require('../../lib/client/generate/confidential-client');
 const GenerateClientRequest = require('../../lib/request/generate-client-request');
 
 const setUp = require('../set-up');

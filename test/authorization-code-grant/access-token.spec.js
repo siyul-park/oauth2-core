@@ -4,7 +4,7 @@ const accessTokenGenerator = require('../../lib/authorization-code-grant/access-
 const AccessTokenRequest = require('../../lib/request/generate-access-token-request');
 const AccessTokenGrantType = require('../../lib/type/grant-type');
 
-const generateConfidentialClient = require('../../lib/client/generate/generate-confidential-client');
+const generateConfidentialClient = require('../../lib/client/generate/confidential-client');
 const GenerateClientRequest = require('../../lib/request/generate-client-request');
 
 const authorizationGenerator = require('../../lib/authorization-code-grant/authorization');
