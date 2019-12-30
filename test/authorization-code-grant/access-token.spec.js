@@ -41,7 +41,12 @@ describe('Authorization Code Grant', () => {
         clientSecret: client.secret,
       });
 
-      await accessTokenGenerator.generate(accessTokenRequest);
+      const token = await accessTokenGenerator.generate(accessTokenRequest);
+
+      // eslint-disable-next-line no-undef
+      expect(token.accessToken).toEqual(expect.stringMatching(/[a-z0-9]+/));
+      // eslint-disable-next-line no-undef
+      expect(token.refreshToken).toEqual(expect.stringMatching(/[a-z0-9]+/));
     });
   });
 });
