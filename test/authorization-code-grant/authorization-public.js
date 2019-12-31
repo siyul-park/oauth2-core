@@ -1,4 +1,4 @@
-const generatePublicClient = require('../../lib/client/generate/public-client');
+const generatePublicClient = require('../../lib/client/generate/generate-public-client');
 const GenerateClientRequest = require('../../lib/request/generate-client-request');
 
 const authorizationGenerator = require('../../lib/authorization-code-grant/authorization');

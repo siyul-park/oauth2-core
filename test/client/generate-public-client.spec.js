@@ -1,9 +1,9 @@
-const generatePublicClient = require('../../lib/client/generate/public-client');
+const generatePublicClient = require('../../lib/client/generate/generate-public-client');
 const GenerateClientRequest = require('../../lib/request/generate-client-request');
 
 const setUp = require('../set-up');
 
-const ClientType = require('../../lib/client/client-type');
+const ClientType = require('../../lib/client/type');
 
 // eslint-disable-next-line no-undef
 describe('Client', () => {

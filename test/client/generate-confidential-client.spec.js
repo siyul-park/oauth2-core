@@ -1,9 +1,9 @@
-const generateConfidentialClient = require('../../lib/client/generate/confidential-client');
+const generateConfidentialClient = require('../../lib/client/generate/generate-confidential-client');
 const GenerateClientRequest = require('../../lib/request/generate-client-request');
 
 const setUp = require('../set-up');
 
-const ClientType = require('../../lib/client/client-type');
+const ClientType = require('../../lib/client/type');
 
 // eslint-disable-next-line no-undef
 describe('Client', () => {

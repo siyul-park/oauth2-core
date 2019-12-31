@@ -2,7 +2,7 @@ const accessTokenGenerator = require('../../lib/authorization-code-grant/access-
 const AccessTokenRequest = require('../../lib/request/generate-access-token-request');
 const AccessTokenGrantType = require('../../lib/type/grant-type');
 
-const ClientType = require('../../lib/client/client-type');
+const ClientType = require('../../lib/client/type');
 
 const { ServerError } = require('../../lib/error');
 const errorPool = require('../../lib/error/pool');

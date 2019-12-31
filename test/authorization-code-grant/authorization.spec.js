@@ -3,7 +3,7 @@ const setUp = require('../set-up');
 const AuthorizationRequest = require('../../lib/request/generate-authorization-request');
 const AuthorizationType = require('../../lib/type/authorization-type');
 
-const generatePublicClient = require('../../lib/client/generate/public-client');
+const generatePublicClient = require('../../lib/client/generate/generate-public-client');
 const GenerateClientRequest = require('../../lib/request/generate-client-request');
 
 const { generate, generateByToken } = require('../../lib/authorization-code-grant/authorization');
