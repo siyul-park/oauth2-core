@@ -1,6 +1,6 @@
 {
   "name": "oauth2-core",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "",
   "scripts": {
     "test": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/jest --forceExit"
@@ -13,11 +13,11 @@
     "lib"
   ],
   "dependencies": {
-    "cross-env": "^6.0.3",
-    "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1"
