@@ -13,6 +13,8 @@ function register() {
   dataAccessorPool.set(DataAccessorType.CLIENT, new MockClientDataAccessor());
   // eslint-disable-next-line max-len
   activeTokenPool.set(ActiveTokenType.AUTHORIZATION_CODE, new ActiveTokenManager(new MockActiveTokenDataAccessor()));
+  // eslint-disable-next-line max-len
+  activeTokenPool.set(ActiveTokenType.AUTHORIZATION_REQUEST_TOKEN, new ActiveTokenManager(new MockActiveTokenDataAccessor()));
 }
 
 module.exports = register;
