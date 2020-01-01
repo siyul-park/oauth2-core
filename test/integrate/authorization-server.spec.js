@@ -18,7 +18,9 @@ describe('Authorization Server', () => {
 
   test('Get Authorization Code Success', async () => {
     const clientDataAccessor = new ClientDataAccessor();
-    const client = await clientDataAccessor.insert(new Client());
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+    }));
 
     const server = createServer(clientDataAccessor);
     const state = Math.random();
@@ -29,6 +31,7 @@ describe('Authorization Server', () => {
         response_type: responseType.CODE,
         client_id: client.id,
         state,
+        scope: ['test'],
       },
     }));
 
@@ -39,8 +42,9 @@ describe('Authorization Server', () => {
 
   test('Post Authorization Code Success', async () => {
     const clientDataAccessor = new ClientDataAccessor();
-    const client = await clientDataAccessor.insert(new Client());
-
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+    }));
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
@@ -50,6 +54,7 @@ describe('Authorization Server', () => {
         response_type: responseType.CODE,
         client_id: client.id,
         state,
+        scope: ['test'],
       },
     }));
 
