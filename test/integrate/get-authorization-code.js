@@ -1,6 +1,8 @@
 const requestMethod = require('../../lib/http/request/request-method');
 const responseType = require('../../lib/http/response/authorization-response-type');
 
+const Request = require('../../lib/http/request/request');
+
 async function getAuthorizationCode(server, client, scope = null) {
   const response = await server.authorize(new Request({
     method: requestMethod.GET,
