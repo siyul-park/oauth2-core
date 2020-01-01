@@ -204,6 +204,42 @@ describe('Authorization Server', () => {
     expect(response.status).toEqual(405);
     expect(response.body.error).toEqual('method_not_allow');
   });
+
+  test('Post Authorization Code Fail Because unsupported response type And Redirect Success', async () => {
+    const redirectUri = 'https://oauth2-core/auth';
+
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+      redirectUri,
+    }));
+    const server = createServer(clientDataAccessor);
+    const state = Math.random();
+
+    const response = await server.authorization(new Request({
+      method: requestMethod.POST,
+      body: {
+        response_type: 'unsupported response type ',
+        client_id: client.id,
+        state,
+        scope: ['test'],
+        redirect_uri: redirectUri,
+      },
+    }));
+
+    expect(response.status).toEqual(302);
+
+    const location = response.get('Location');
+    expect(location).toBeTruthy();
+
+    const uriAndQuery = location.split('?');
+    const uri = uriAndQuery[0];
+    const query = queryString.parse(uriAndQuery[1]);
+
+    expect(uri).toEqual(redirectUri);
+    expect(query.error).toEqual('unsupported_response_type');
+    expect(Number.parseFloat(query.state)).toEqual(state);
+  });
 });
 
 /* eslint-enable no-undef */
