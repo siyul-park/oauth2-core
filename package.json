@@ -8,12 +8,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "main": "lib/index.js",
+  "main": "lib/lagacy/index.js",
   "files": [
     "lib"
   ],
   "dependencies": {
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "query-string": "^6.9.0"
   },
   "devDependencies": {
     "cross-env": "^6.0.3",
