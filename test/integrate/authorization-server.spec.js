@@ -119,6 +119,91 @@ describe('Authorization Server', () => {
     expect(response.status).toEqual(403);
     expect(response.body.error).toEqual('invalid_scope');
   });
+
+  test('Post Authorization Code Fail Because client not exist', async () => {
+    const clientDataAccessor = new ClientDataAccessor();
+    const server = createServer(clientDataAccessor);
+    const state = Math.random();
+
+    const response = await server.authorization(new Request({
+      method: requestMethod.POST,
+      body: {
+        response_type: responseType.CODE,
+        client_id: 'test',
+        state,
+        scope: ['test'],
+      },
+    }));
+
+    expect(response.status).toEqual(401);
+    expect(response.body.error).toEqual('unauthorized_client');
+  });
+
+  test('Post Authorization Code Fail Because unsupported response type', async () => {
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+    }));
+    const server = createServer(clientDataAccessor);
+    const state = Math.random();
+
+    const response = await server.authorization(new Request({
+      method: requestMethod.POST,
+      body: {
+        response_type: 'unsupported response type ',
+        client_id: client.id,
+        state,
+        scope: ['test'],
+      },
+    }));
+
+    expect(response.status).toEqual(400);
+    expect(response.body.error).toEqual('unsupported_response_type');
+  });
+
+  test('Post Authorization Code Fail Because method not allow 1', async () => {
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+    }));
+    const server = createServer(clientDataAccessor);
+    const state = Math.random();
+
+    const response = await server.authorization(new Request({
+      method: requestMethod.DELETE,
+      body: {
+        response_type: responseType.CODE,
+        client_id: client.id,
+        state,
+        scope: ['test'],
+      },
+    }));
+
+    expect(response.status).toEqual(405);
+    expect(response.body.error).toEqual('method_not_allow');
+  });
+
+  test('Post Authorization Code Fail Because method not allow 2', async () => {
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+    }));
+    const server = createServer(clientDataAccessor);
+    const state = Math.random();
+
+    const response = await server.authorization(new Request({
+      method: 'not allowed method',
+      body: {
+        response_type: responseType.CODE,
+        client_id: client.id,
+        state,
+        scope: ['test'],
+      },
+    }));
+
+    expect(response.status).toEqual(405);
+    expect(response.body.error).toEqual('method_not_allow');
+  });
 });
 
 /* eslint-enable no-undef */
