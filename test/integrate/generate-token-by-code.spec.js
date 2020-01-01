@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 const createServer = require('./create-server');
 const getAuthorizationCode = require('./get-authorization-code');
+const generateTokenByCode = require('./generate-token-by-code');
 
 const ClientDataAccessor = require('../mock/client-data-accessor');
 const Client = require('../../lib/client/client');
@@ -68,6 +69,26 @@ describe('Generate Token By Authorization Code', () => {
     expect(response.body.refresh_token).toEqual(expect.stringMatching(/[a-z0-9]+/));
     expect(response.body.token_type).toEqual('bearer');
     expect(response.body.expires_in).toBeTruthy();
+  });
+
+  test('Generate Token Fail Because use authorization code twice', async () => {
+    const redirectUri = 'https://oauth2-core/auth';
+
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+      redirectUri,
+    }));
+
+    const server = createServer(clientDataAccessor);
+    const code = await getAuthorizationCode(server, client, 'test');
+
+    await generateTokenByCode(server, client, code, redirectUri);
+
+    const response = await generateTokenByCode(server, client, code, redirectUri);
+
+    expect(response.status).toEqual(403);
+    expect(response.body.error).toEqual('access_denied');
   });
 });
 
