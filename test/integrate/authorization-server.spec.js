@@ -100,6 +100,32 @@ describe('Authorization Server', () => {
     expect(Number.parseFloat(query.state)).toEqual(state);
   });
 
+  test('Get Authorization Code Redirect Fail', async () => {
+    const redirectUri = 'https://oauth2-core/auth';
+
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+      redirectUri,
+    }));
+    const server = createServer(clientDataAccessor);
+    const state = Math.random();
+
+    const response = await server.authorization(new Request({
+      method: requestMethod.POST,
+      body: {
+        response_type: responseType.CODE,
+        client_id: client.id,
+        state,
+        scope: ['test'],
+        redirect_uri: 'other redirect uri',
+      },
+    }));
+
+    expect(response.status).toEqual(400);
+    expect(response.body.error).toEqual('invalid_redirect_url');
+  });
+
   test('Post Authorization Code Fail Because scope is invalid', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client());
