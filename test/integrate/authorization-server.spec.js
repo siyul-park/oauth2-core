@@ -16,7 +16,7 @@ describe('Authorization Server', () => {
     createServer(clientDataAccessor);
   });
 
-  test('Authorization Code Success', async () => {
+  test('Get Authorization Code Success', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client());
 
@@ -33,6 +33,27 @@ describe('Authorization Server', () => {
     }));
 
     expect(response.status).toEqual(200);
+    expect(response.body.code).toEqual(expect.stringMatching(/[a-z0-9]+/));
+    expect(response.body.state).toEqual(state);
+  });
+
+  test('Post Authorization Code Success', async () => {
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client());
+
+    const server = createServer(clientDataAccessor);
+    const state = Math.random();
+
+    const response = await server.authorization(new Request({
+      method: requestMethod.POST,
+      body: {
+        response_type: responseType.CODE,
+        client_id: client.id,
+        state,
+      },
+    }));
+
+    expect(response.status).toEqual(201);
     expect(response.body.code).toEqual(expect.stringMatching(/[a-z0-9]+/));
     expect(response.body.state).toEqual(state);
   });
