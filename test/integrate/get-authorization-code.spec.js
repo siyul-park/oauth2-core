@@ -20,7 +20,7 @@ describe('Get Authorization Code', () => {
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
-    const response = await server.authorization(new Request({
+    const response = await server.authorize(new Request({
       method: requestMethod.GET,
       query: {
         response_type: responseType.CODE,
@@ -43,7 +43,7 @@ describe('Get Authorization Code', () => {
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
-    const response = await server.authorization(new Request({
+    const response = await server.authorize(new Request({
       method: requestMethod.POST,
       body: {
         response_type: responseType.CODE,
@@ -69,7 +69,7 @@ describe('Get Authorization Code', () => {
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
-    const response = await server.authorization(new Request({
+    const response = await server.authorize(new Request({
       method: requestMethod.POST,
       body: {
         response_type: responseType.CODE,
@@ -105,7 +105,7 @@ describe('Get Authorization Code', () => {
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
-    const response = await server.authorization(new Request({
+    const response = await server.authorize(new Request({
       method: requestMethod.POST,
       body: {
         response_type: responseType.CODE,
@@ -126,7 +126,7 @@ describe('Get Authorization Code', () => {
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
-    const response = await server.authorization(new Request({
+    const response = await server.authorize(new Request({
       method: requestMethod.POST,
       body: {
         response_type: responseType.CODE,
@@ -145,7 +145,7 @@ describe('Get Authorization Code', () => {
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
-    const response = await server.authorization(new Request({
+    const response = await server.authorize(new Request({
       method: requestMethod.POST,
       body: {
         response_type: responseType.CODE,
@@ -167,7 +167,7 @@ describe('Get Authorization Code', () => {
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
-    const response = await server.authorization(new Request({
+    const response = await server.authorize(new Request({
       method: requestMethod.POST,
       body: {
         response_type: 'unsupported response type ',
@@ -189,7 +189,7 @@ describe('Get Authorization Code', () => {
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
-    const response = await server.authorization(new Request({
+    const response = await server.authorize(new Request({
       method: requestMethod.DELETE,
       body: {
         response_type: responseType.CODE,
@@ -211,7 +211,7 @@ describe('Get Authorization Code', () => {
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
-    const response = await server.authorization(new Request({
+    const response = await server.authorize(new Request({
       method: 'not allowed method',
       body: {
         response_type: responseType.CODE,
@@ -236,7 +236,7 @@ describe('Get Authorization Code', () => {
     const server = createServer(clientDataAccessor);
     const state = Math.random();
 
-    const response = await server.authorization(new Request({
+    const response = await server.authorize(new Request({
       method: requestMethod.POST,
       body: {
         response_type: 'unsupported response type ',
