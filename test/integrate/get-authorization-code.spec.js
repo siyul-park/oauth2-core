@@ -10,7 +10,7 @@ const Request = require('../../lib/http/request/request');
 const requestMethod = require('../../lib/http/request/request-method');
 const responseType = require('../../lib/http/response/authorization-response-type');
 
-describe('Authorization Server', () => {
+describe('Get Authorization Code', () => {
   test('Get Authorization Code Success', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
