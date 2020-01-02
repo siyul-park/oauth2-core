@@ -1,14 +1,15 @@
 /* eslint-disable no-undef */
 const queryString = require('query-string');
 
+const {
+  Client,
+  Request,
+  requestMethod,
+  responseType,
+} = require('../../lib');
+
 const createServer = require('./create-server');
-
 const ClientDataAccessor = require('../mock/client-data-accessor');
-const Client = require('../../lib/client/client');
-
-const Request = require('../../lib/http/request/request');
-const requestMethod = require('../../lib/http/request/request-method');
-const responseType = require('../../lib/http/response/authorization-response-type');
 
 describe('Generate Token By Implicit Grant', () => {
   test('Generate Token Success By Public Client With Redirect URI', async () => {

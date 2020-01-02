@@ -1,15 +1,15 @@
-const oauth2 = require('../../lib');
-
-const DefaultActiveTokenDataAccessor = require('../../lib/token/active-token/default-active-token-data-accessor');
-const DefaultJobManager = require('../../lib/job/default-job-manager');
-
-const UserDataAccessor = require('../mock/user-data-accessor');
+const {
+  Server,
+  DefaultJobManager,
+  DefaultActiveTokenDataAccessor,
+  UserDataAccessor,
+} = require('../../lib');
 
 const activeTokenDataAccessor = new DefaultActiveTokenDataAccessor();
 const jobManager = new DefaultJobManager();
 
 function createServer(clientDataAccessor, userDataAccessor = new UserDataAccessor()) {
-  return new oauth2.Server({
+  return new Server({
     issuer: 'oauth2-core-test',
     client: {
       dao: clientDataAccessor,

@@ -1,7 +1,8 @@
-const requestMethod = require('../../lib/http/request/request-method');
-const grantType = require('../../lib/token/grant-type');
-
-const Request = require('../../lib/http/request/request');
+const {
+  Request,
+  requestMethod,
+  grantType,
+} = require('../../lib');
 
 function generateTokenByCode(server, client, code, redirectUri) {
   return server.token(new Request({

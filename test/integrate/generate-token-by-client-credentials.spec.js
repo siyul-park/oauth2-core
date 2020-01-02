@@ -1,12 +1,13 @@
 /* eslint-disable no-undef */
+const {
+  Client,
+  requestMethod,
+  grantType,
+  Request,
+} = require('../../lib');
+
 const createServer = require('./create-server');
-
 const ClientDataAccessor = require('../mock/client-data-accessor');
-const Client = require('../../lib/client/client');
-
-const Request = require('../../lib/http/request/request');
-const requestMethod = require('../../lib/http/request/request-method');
-const grantType = require('../../lib/token/grant-type');
 
 describe('Generate Token By Client Credentials', () => {
   test('Generate Token Success With Client Authorization', async () => {
