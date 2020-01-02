@@ -42,8 +42,6 @@ describe('Generate Token By Password', () => {
     expect(response.status).toEqual(201);
     expect(response.body.access_token).toEqual(expect.stringMatching(/[a-z0-9]+/));
     expect(response.body.token_type).toEqual('bearer');
-    expect(response.body.expires_in).toBeTruthy();
-    expect(response.body.scope).toEqual(['test']);
   });
 });
 
