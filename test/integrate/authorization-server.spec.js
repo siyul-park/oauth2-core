@@ -2,12 +2,11 @@
 const createServer = require('./create-server');
 
 const ClientDataAccessor = require('../mock/client-data-accessor');
+const UserDataAccessor = require('../mock/user-data-accessor');
 
 describe('Authorization Server', () => {
   test('Create Authorization Server', async () => {
-    const clientDataAccessor = new ClientDataAccessor();
-
-    createServer(clientDataAccessor);
+    createServer(new ClientDataAccessor(), new UserDataAccessor());
   });
 });
 
