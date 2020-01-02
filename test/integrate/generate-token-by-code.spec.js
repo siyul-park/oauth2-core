@@ -75,6 +75,86 @@ describe('Generate Token By Authorization Code', () => {
     expect(response.body.expires_in).toBeTruthy();
   });
 
+  test('Generate Token Fail Because client not unauthorized client 1', async () => {
+    const redirectUri = 'https://oauth2-core/auth';
+
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+      redirectUri,
+    }));
+
+    const server = createServer(clientDataAccessor);
+    const code = await getAuthorizationCode(server, client, 'test');
+
+    const response = await server.token(new Request({
+      method: requestMethod.POST,
+      body: {
+        grant_type: grantType.AUTHORIZATION_CODE,
+        code,
+        redirect_uri: redirectUri,
+        client_id: client.id,
+      },
+    }));
+
+    expect(response.status).toEqual(401);
+    expect(response.body.error).toEqual('unauthorized_client');
+  });
+
+  test('Generate Token Fail Because client not unauthorized client 2', async () => {
+    const redirectUri = 'https://oauth2-core/auth';
+
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+      redirectUri,
+    }));
+
+    const server = createServer(clientDataAccessor);
+    const code = await getAuthorizationCode(server, client, 'test');
+
+    const response = await server.token(new Request({
+      method: requestMethod.POST,
+      body: {
+        grant_type: grantType.AUTHORIZATION_CODE,
+        code,
+        redirect_uri: redirectUri,
+        client_id: client.id,
+        client_secret: 'SECRET',
+      },
+    }));
+
+    expect(response.status).toEqual(401);
+    expect(response.body.error).toEqual('unauthorized_client');
+  });
+
+  test('Generate Token Fail Because client not unauthorized client 3', async () => {
+    const redirectUri = 'https://oauth2-core/auth';
+
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['test'],
+      redirectUri,
+      secret: 'SECRET',
+    }));
+
+    const server = createServer(clientDataAccessor);
+    const code = await getAuthorizationCode(server, client, 'test');
+
+    const response = await server.token(new Request({
+      method: requestMethod.POST,
+      body: {
+        grant_type: grantType.AUTHORIZATION_CODE,
+        code,
+        redirect_uri: redirectUri,
+        client_id: client.id,
+      },
+    }));
+
+    expect(response.status).toEqual(401);
+    expect(response.body.error).toEqual('unauthorized_client');
+  });
+
   test('Generate Token Fail Because use authorization code twice', async () => {
     const redirectUri = 'https://oauth2-core/auth';
 
