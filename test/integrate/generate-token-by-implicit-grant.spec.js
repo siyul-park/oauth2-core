@@ -147,6 +147,26 @@ describe('Generate Token By Implicit Grant', () => {
     expect(Number.parseFloat(response.body.state)).toEqual(state);
   });
 
+  test('Generate Token Fail By Because Client Not Exist', async () => {
+    const clientDataAccessor = new ClientDataAccessor();
+    const server = createServer(clientDataAccessor);
+    const state = Math.random();
+
+    const response = await server.authorize(new Request({
+      method: requestMethod.GET,
+      query: {
+        response_type: responseType.TOKEN,
+        client_id: 'Not Exist Client Id',
+        state,
+        scope: ['test'],
+      },
+    }));
+
+    expect(response.status).toEqual(401);
+    expect(response.body.error).toEqual('unauthorized_client');
+    expect(Number.parseFloat(response.body.state)).toEqual(state);
+  });
+
   test('Generate Token Fail By Because Redirect Scope Is Invalid', async () => {
     const redirectUri = 'https://oauth2-core/auth';
 
