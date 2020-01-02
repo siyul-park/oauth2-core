@@ -5,7 +5,7 @@ const joinEndPoints = require('../../../lib/http/end-point/join-end-points');
 const requestMethod = require('../../../lib/http/request/request-method');
 const Request = require('../../../lib/http/request/request');
 
-const createJoinEndPoint = require('../../mock/create-join-end-point');
+const createJoinEndPoint = require('../../util/create-join-end-point');
 
 describe('Join End Points', () => {
   beforeAll(() => {

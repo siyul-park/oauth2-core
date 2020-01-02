@@ -7,8 +7,8 @@ const Request = require('../../../lib/http/request/request');
 
 const ServerError = require('../../../lib/error/server-error');
 
-const mockPromiseEndPoint = require('../../mock/promise-end-point');
-const mockFunctionalEndPoint = require('../../mock/functional-end-point');
+const mockPromiseEndPoint = require('../../util/promise-end-point');
+const mockFunctionalEndPoint = require('../../util/functional-end-point');
 
 describe('Create End Point', () => {
   test('Success End Point Create By Promise', async () => {

@@ -6,10 +6,10 @@ const {
   grantType,
 } = require('../../lib');
 
-const createServer = require('./create-server');
-const getAuthorizationCode = require('./get-authorization-code');
-const generateTokenByCode = require('./generate-token-by-code');
-const ClientDataAccessor = require('../mock/client-data-accessor');
+const createServer = require('../util/create-server');
+const getAuthorizationCode = require('../util/get-authorization-code');
+const generateTokenByCode = require('../util/generate-token-by-code');
+const ClientDataAccessor = require('../util/client-data-accessor');
 
 describe('Generate Token By Authorization Code', () => {
   test('Generate Token Success By Confidential Client By Authorization', async () => {

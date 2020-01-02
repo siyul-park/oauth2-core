@@ -6,8 +6,8 @@ const {
   Request,
 } = require('../../lib');
 
-const createServer = require('./create-server');
-const ClientDataAccessor = require('../mock/client-data-accessor');
+const createServer = require('../util/create-server');
+const ClientDataAccessor = require('../util/client-data-accessor');
 
 describe('Generate Token By Client Credentials', () => {
   test('Generate Token Success With Client Authorization', async () => {

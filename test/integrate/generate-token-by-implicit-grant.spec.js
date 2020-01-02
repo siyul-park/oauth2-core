@@ -8,8 +8,8 @@ const {
   responseType,
 } = require('../../lib');
 
-const createServer = require('./create-server');
-const ClientDataAccessor = require('../mock/client-data-accessor');
+const createServer = require('../util/create-server');
+const ClientDataAccessor = require('../util/client-data-accessor');
 
 describe('Generate Token By Implicit Grant', () => {
   test('Generate Token Success By Public Client With Redirect URI', async () => {

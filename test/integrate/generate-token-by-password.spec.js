@@ -7,9 +7,9 @@ const {
   grantType,
 } = require('../../lib');
 
-const createServer = require('./create-server');
-const ClientDataAccessor = require('../mock/client-data-accessor');
-const UserDataAccessor = require('../mock/user-data-accessor');
+const createServer = require('../util/create-server');
+const ClientDataAccessor = require('../util/client-data-accessor');
+const UserDataAccessor = require('../util/user-data-accessor');
 
 describe('Generate Token By Password', () => {
   test('Generate Token Success By Password With Client Authorization', async () => {
