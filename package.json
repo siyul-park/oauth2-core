@@ -1,13 +1,21 @@
 {
   "name": "oauth2-core",
-  "version": "0.0.7",
-  "description": "",
+  "version": "0.0.8",
+  "description": "oauth2 implementation",
   "scripts": {
     "test": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/jest --forceExit"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "node",
+    "oauth2"
+  ],
+  "author": "Park Si-Yual",
+  "homepage": "https://github.com/kdPark0723/oauth2-core",
+  "bugs": {
+    "url": "https://github.com/kdPark0723/oauth2-core/issues",
+    "email": "kdpark023@gmail.com"
+  },
+  "license": "MIT",
   "main": "lib",
   "files": [
     "lib"
