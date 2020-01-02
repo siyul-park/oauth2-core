@@ -6,6 +6,9 @@ const Request = require('../../lib/http/request/request');
 function generateTokenByCode(server, client, code, redirectUri) {
   return server.token(new Request({
     method: requestMethod.POST,
+    headers: {
+      Authorization: `Basic ${client.base64()}`,
+    },
     body: {
       grant_type: grantType.AUTHORIZATION_CODE,
       code,

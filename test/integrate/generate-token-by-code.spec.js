@@ -25,6 +25,9 @@ describe('Generate Token By Authorization Code', () => {
 
     const response = await server.token(new Request({
       method: requestMethod.POST,
+      headers: {
+        Authorization: `Basic ${client.base64()}`,
+      },
       body: {
         grant_type: grantType.AUTHORIZATION_CODE,
         code,
@@ -55,6 +58,9 @@ describe('Generate Token By Authorization Code', () => {
 
     const response = await server.token(new Request({
       method: requestMethod.POST,
+      headers: {
+        Authorization: `Basic ${client.base64()}`,
+      },
       body: {
         grant_type: grantType.AUTHORIZATION_CODE,
         code,
