@@ -174,7 +174,7 @@ describe('Generate Token By Authorization Code', () => {
     const response = await generateTokenByCode(server, client, code, redirectUri);
 
     expect(response.status).toEqual(403);
-    expect(response.body.error).toEqual('access_denied');
+    expect(response.body.error).toEqual('invalid_token');
   });
 });
 
