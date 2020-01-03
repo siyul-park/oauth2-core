@@ -1,11 +1,13 @@
 # OAuth2 Core  
-Complete implementation of OAuth 2.0
-
-OAuth is an open standard for delegation of access, which is used as a common means by which Internet users can give a website or application access to their information on another website without providing a password.
+**Complete implementation of OAuth 2.0**
 
 ​    
 
-OAuth2 Core supports the following flows.
+​	OAuth is an open standard for delegation of access, which is used as a common means by which Internet users can give a website or application access to their information on another website without providing a password.
+
+​    
+
+## OAuth2 Core supports the following flows.
 
 - [Authorization Code Grant Flow](https://tools.ietf.org/html/rfc6749#section-4.1)
 - [Implicit Grant Flow](https://tools.ietf.org/html/rfc6749#section-4.2)
@@ -14,9 +16,16 @@ OAuth2 Core supports the following flows.
 
 ​    
 
-And It also support refreshing an access token
+### And It also support refreshing an access token
 
 - [Refreshing an Access Token](https://tools.ietf.org/html/rfc6749#section-6)
+
+​    
+
+## Example
+
+- https://github.com/kdPark0723/oauth2-core/tree/master/test
+  - this is test files, but you also use as examples
 
 ​    
 
@@ -173,7 +182,7 @@ class Client {
     }
   }
 
-  base64() {
+  basic() {
     return btoa(`${this.id}:${this.secret}`);
   }
 }
@@ -351,8 +360,8 @@ const response = await server.authorize(new Request({
 response = {
   status: 200,
   body: {
-  	code: 'code',
-  	state,
+    code,
+    state,
   }
 };
 ```
@@ -369,7 +378,7 @@ response = {
 const response = await server.token(new Request({
   method: requestMethod.POST,
   headers: {
-    Authorization: `Basic ${client.base64()}`,
+    Authorization: `Basic ${client.basic()}`,
   },
   body: {
     grant_type: grantType.AUTHORIZATION_CODE,
@@ -401,10 +410,10 @@ const response = await server.token(new Request({
 response = {
   status: 201,
   body: {
-  	access_token 'access_token',
-  	refresh_token: 'refresh_token',
-  	token_type: 'example',
-  	expires_in: 3600,
+    access_token: 'access_token',
+    refresh_token: 'refresh_token',
+    token_type: 'example',
+    expires_in: 3600,
   }
 };
 ```
@@ -469,9 +478,9 @@ const response = await server.authorize(new Request({
 response = {
   status: 200,
   body: {
-  	access_token 'access_token',
-  	token_type: 'example',
-  	expires_in: 3600,
+    access_token 'access_token',
+    token_type: 'example',
+    expires_in: 3600,
     state,
     scope,
   }
@@ -492,7 +501,7 @@ response = {
 const response = await server.token(new Request({
   method: requestMethod.POST,
   headers: {
-    Authorization: `Basic ${client.base64()}`,
+    Authorization: `Basic ${client.basic()}`,
   },
   body: {
     grant_type: grantType.PASSWORD,
@@ -525,10 +534,10 @@ const response = await server.token(new Request({
 response = {
   status: 201,
   body: {
-  	access_token 'access_token',
-  	refresh_token: 'refresh_token',
-  	token_type: 'example',
-  	expires_in: 3600,
+    access_token 'access_token',
+    refresh_token: 'refresh_token',
+    token_type: 'example',
+    expires_in: 3600,
   }
 };
 ```
@@ -547,11 +556,11 @@ response = {
 const response = await server.token(new Request({
   method: requestMethod.POST,
   headers: {
-    Authorization: `Basic ${client.base64()}`,
+    Authorization: `Basic ${client.basic()}`,
   },
   body: {
     grant_type: grantType.CLIENT_CREDENTIALS,
-    scope: ['test'],
+    scope,
   },
 }));
 ```
@@ -563,7 +572,7 @@ const response = await server.token(new Request({
   method: requestMethod.POST,
   body: {
     grant_type: grantType.CLIENT_CREDENTIALS,
-    scope: ['test'],
+    scope,
     client_id: client.id,
     client_secret: client.secret,
   },
@@ -576,9 +585,9 @@ const response = await server.token(new Request({
 response = {
   status: 201,
   body: {
-  	access_token 'access_token',
-  	token_type: 'example',
-  	expires_in: 3600,
+    access_token 'access_token',
+    token_type: 'example',
+    expires_in: 3600,
   }
 };
 ```
@@ -597,12 +606,12 @@ response = {
 await server.token(new Request({
   method: requestMethod.POST,
   headers: {
-    Authorization: `Basic ${client.base64()}`,
+    Authorization: `Basic ${client.basic()}`,
   },
   body: {
     grant_type: grantType.REFRESH_TOKEN,
     refresh_token: refreshToken,
-    scope: ['test'],
+    scope,
   },
 }));
 ```
@@ -615,7 +624,7 @@ const response = await server.token(new Request({
   body: {
     grant_type: grantType.REFRESH_TOKEN,
     refresh_token: refreshToken,
-    scope: ['test'],
+    scope,
     client_id: client.id,
     client_secret: client.secret,
   },
@@ -628,9 +637,9 @@ const response = await server.token(new Request({
 response = {
   status: 201,
   body: {
-  	access_token 'access_token',
-  	token_type: 'example',
-  	expires_in: 3600,
+    access_token 'access_token',
+    token_type: 'example',
+    expires_in: 3600,
   }
 };
 ```

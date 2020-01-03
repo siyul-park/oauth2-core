@@ -31,7 +31,7 @@ describe('Generate Token By Refresh Token', () => {
     const response = await server.token(new Request({
       method: requestMethod.POST,
       headers: {
-        Authorization: `Basic ${client.base64()}`,
+        Authorization: `Basic ${client.basic()}`,
       },
       body: {
         grant_type: grantType.REFRESH_TOKEN,
@@ -104,7 +104,7 @@ describe('Generate Token By Refresh Token', () => {
     const response = await server.token(new Request({
       method: requestMethod.POST,
       headers: {
-        Authorization: `Basic ${otherClient.base64()}`,
+        Authorization: `Basic ${otherClient.basic()}`,
       },
       body: {
         grant_type: grantType.REFRESH_TOKEN,
@@ -136,7 +136,7 @@ describe('Generate Token By Refresh Token', () => {
     const response = await server.token(new Request({
       method: requestMethod.POST,
       headers: {
-        Authorization: `Basic ${client.base64()}`,
+        Authorization: `Basic ${client.basic()}`,
       },
       body: {
         grant_type: grantType.REFRESH_TOKEN,
