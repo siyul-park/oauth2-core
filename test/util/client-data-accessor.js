@@ -1,5 +1,5 @@
 const ClientDataAccessor = require('../../lib/client/client-data-accessor');
-const generateId = require('../../lib/http/generate-Id');
+const generateId = require('../../lib/token/generate-Id');
 
 const clients = new Map();
 
