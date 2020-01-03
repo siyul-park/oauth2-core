@@ -439,7 +439,7 @@ const response = await server.authorize(new Request({
 response = {
   status: 302,
   headers: {
-    Location: 'https://example.auth2-core/auth?access_token=access_token&token_type=example&expires_in=3600&scope=scopestate=state'
+    Location: 'https://example.auth2-core/auth?access_token=access_token&token_type=example&expires_in=3600&scope=scope&state=state'
   }
 };
 ```
