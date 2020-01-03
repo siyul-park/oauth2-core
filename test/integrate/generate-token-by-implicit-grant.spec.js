@@ -31,7 +31,7 @@ describe('Generate Token By Implicit Grant', () => {
         client_id: client.id,
         state,
         scope: ['test'],
-        redirect_uri: redirectUri,
+        redirect_uri: client.redirectUri,
       },
     }));
 
