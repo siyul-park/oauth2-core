@@ -317,10 +317,26 @@ class JobManager {
 
 #### Request
 
+##### By GET Method
+
 ```js
 const response = await server.authorize(new Request({
   method: requestMethod.GET,
   query: {
+    response_type: responseType.CODE,
+    client_id: client.id,
+    state,
+    scope,
+  },
+}));
+```
+
+##### By POST Method
+
+```js
+const response = await server.authorize(new Request({
+  method: requestMethod.POST,
+  body: {
     response_type: responseType.CODE,
     client_id: client.id,
     state,
@@ -451,7 +467,7 @@ const response = await server.authorize(new Request({
 
 ```js
 response = {
-  status: 300,
+  status: 200,
   body: {
   	access_token 'access_token',
   	token_type: 'example',
