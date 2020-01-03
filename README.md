@@ -126,8 +126,6 @@ class ClientDataAccessor {
 
 - You must implement `findById` properly by extends ` Client Data Accessor`.
 
-​    
-
 #### Example
 
 ```js
@@ -197,8 +195,6 @@ class UserDataAccessor {
 ```
 
 - You must implement `findByName` properly by extends `UserDataAccessor`.
-
-​    
 
 #### Example
 
@@ -333,8 +329,6 @@ const response = await server.authorize(new Request({
 }));
 ```
 
-​    
-
 #### Response
 
 ```js
@@ -385,8 +379,6 @@ const response = await server.token(new Request({
 }));
 ```
 
-​    
-
 #### Response
 
 ```js
@@ -425,8 +417,6 @@ const response = await server.authorize(new Request({
 
 ```
 
-​    
-
 #### Response
 
 ```js
@@ -456,8 +446,6 @@ const response = await server.authorize(new Request({
 }));
 
 ```
-
-​    
 
 #### Response
 
@@ -515,8 +503,6 @@ const response = await server.token(new Request({
 }));
 ```
 
-​    
-
 ### Response
 
 ```js
@@ -567,8 +553,6 @@ const response = await server.token(new Request({
   },
 }));
 ```
-
-​    
 
 ### Response
 
@@ -621,8 +605,6 @@ const response = await server.token(new Request({
   },
 }));
 ```
-
-  
 
 ### Response
 
