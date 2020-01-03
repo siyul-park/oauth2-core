@@ -3,7 +3,7 @@ Complete implementation of OAuth 2.0
 
 OAuth is an open standard for delegation of access, which is used as a common means by which Internet users can give a website or application access to their information on another website without providing a password.
 
-
+​    
 
 OAuth2 Core supports the following flows.
 
@@ -12,13 +12,13 @@ OAuth2 Core supports the following flows.
 - [Resource Owner Password Credentials Grant Flow](https://tools.ietf.org/html/rfc6749#section-4.3)
 - [Client Credentials Grant Flow](https://tools.ietf.org/html/rfc6749#section-4.4) 
 
-
+​    
 
 And It also support refreshing an access token
 
 - [Refreshing an Access Token](https://tools.ietf.org/html/rfc6749#section-6)
 
-  
+​    
 
 ## Installation
 
@@ -28,7 +28,7 @@ Install the library using [npm](http://npmjs.org/):
 npm i oauth2-core
 ```
 
-  
+​    
 
 ## Create server
 
@@ -64,7 +64,7 @@ const server = new Server(options);
 - `token.activeToken.dao` is used to insert or delete tokens that the server is active.
 - `job.manager` is used by the server to schedule and manage asynchronous jobs.
 
-  
+​    
 
 ### Default options
 
@@ -112,7 +112,7 @@ const defaultOptions = {
 
 - Unspecified options are set as default options.
 
-  
+​    
 
 ### Client Data Accessor
 
@@ -126,7 +126,7 @@ class ClientDataAccessor {
 
 - You must implement `findById` properly by extends ` Client Data Accessor`.
 
-  
+​    
 
 #### Example
 
@@ -154,7 +154,7 @@ class MockClientDataAccessor extends ClientDataAccessor {
 
 - This is a very simple example used for testing.
 
-  
+​    
 
 ### Client
 
@@ -184,7 +184,7 @@ class Client {
 - `Client` is defined as above and can be extended as needed.
 - `scope` is the scope of ` scope` that this client has access to.
 
-  
+​    
 
 ### User Data Accessor
 
@@ -198,7 +198,7 @@ class UserDataAccessor {
 
 - You must implement `findByName` properly by extends `UserDataAccessor`.
 
-  
+​    
 
 #### Example
 
@@ -220,7 +220,7 @@ class MockUserDataAccessor extends UserDataAccessor {
 
 - This is a very simple example used for testing.
 
-  
+​    
 
 ### User
 
@@ -242,7 +242,7 @@ class User {
 
 - `User` is defined as above and can be extended as needed.
 
-  
+​    
 
 ### Active Token Data Accessor
 
@@ -272,7 +272,7 @@ class ActiveTokenDataAccessor {
 
 - You can implement all properly by extends `UserDataAccessor` To extend functionality.
 
-  
+​    
 
 ### Active Token
 
@@ -290,7 +290,7 @@ class ActiveToken {
 - `life` is maximum count to access this token.
 - `age` is access count.
 
-  
+​    
 
 ### Job Manager
 
@@ -311,7 +311,7 @@ class JobManager {
 - `handler` is function to run current time.
 - `timeout` is milliseconds to run `handler` in `timeout` milliseconds later.
 
-  
+​    
 
 ## Authorization Code Grant
 
@@ -347,7 +347,7 @@ response = {
 };
 ```
 
-  
+​    
 
 ### Access Token
 
@@ -385,7 +385,7 @@ const response = await server.token(new Request({
 }));
 ```
 
-  
+​    
 
 #### Response
 
@@ -425,7 +425,7 @@ const response = await server.authorize(new Request({
 
 ```
 
-  
+​    
 
 #### Response
 
@@ -438,7 +438,7 @@ response = {
 };
 ```
 
-  
+​    
 
 ### Not Use Redirect
 
@@ -457,7 +457,7 @@ const response = await server.authorize(new Request({
 
 ```
 
-  
+​    
 
 #### Response
 
@@ -474,7 +474,7 @@ response = {
 };
 ```
 
-​    
+​        
 
 ## Resource Owner Password Credentials Grant
 
@@ -515,7 +515,7 @@ const response = await server.token(new Request({
 }));
 ```
 
-  
+​    
 
 ### Response
 
@@ -531,7 +531,7 @@ response = {
 };
 ```
 
-  
+​    
 
 ## Client Credentials Grant
 
@@ -583,7 +583,7 @@ response = {
 };
 ```
 
-  
+​    
 
 ## Refreshing an Access Token
 
