@@ -112,8 +112,14 @@ const defaultOptions = {
   },
 
   scopeToken: {
+    authorizationCode: {
+      create: 'authorizationCode:create',
+    },
     accessToken: {
       create: 'accessToken:create',
+    },
+    refreshToken: {
+      create: 'refreshToken:create',
     },
   },
 };
