@@ -1,6 +1,6 @@
 {
   "name": "oauth2-core",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "oauth2 implementation",
   "scripts": {
     "test": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/jest --forceExit"

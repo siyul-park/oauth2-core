@@ -36,7 +36,7 @@ describe('Get Authorization Code', () => {
     expect(response.body.state).toEqual(state);
   });
 
-  test('Post Authorization Code Success', async () => {
+  test('Get Authorization Code Success By Post Method', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
@@ -121,7 +121,7 @@ describe('Get Authorization Code', () => {
     expect(response.body.error).toEqual('invalid_redirect_url');
   });
 
-  test('Post Authorization Code Fail Because scope is invalid', async () => {
+  test('Get Authorization Code Fail Because scope is invalid', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client());
     const server = createServer(clientDataAccessor);
@@ -141,7 +141,7 @@ describe('Get Authorization Code', () => {
     expect(response.body.error).toEqual('invalid_scope');
   });
 
-  test('Post Authorization Code Fail Because client not exist', async () => {
+  test('Get Authorization Code Fail Because client not exist', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const server = createServer(clientDataAccessor);
     const state = Math.random();
@@ -160,7 +160,7 @@ describe('Get Authorization Code', () => {
     expect(response.body.error).toEqual('unauthorized_client');
   });
 
-  test('Post Authorization Code Fail Because unsupported response type', async () => {
+  test('Get Authorization Code Fail Because unsupported response type', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
@@ -182,7 +182,7 @@ describe('Get Authorization Code', () => {
     expect(response.body.error).toEqual('unsupported_response_type');
   });
 
-  test('Post Authorization Code Fail Because method not allow 1', async () => {
+  test('Get Authorization Code Fail Because method not allow 1', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
@@ -204,7 +204,7 @@ describe('Get Authorization Code', () => {
     expect(response.body.error).toEqual('method_not_allow');
   });
 
-  test('Post Authorization Code Fail Because method not allow 2', async () => {
+  test('Get Authorization Code Fail Because method not allow 2', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
@@ -226,7 +226,7 @@ describe('Get Authorization Code', () => {
     expect(response.body.error).toEqual('method_not_allow');
   });
 
-  test('Post Authorization Code Fail Because unsupported response type And Redirect Success', async () => {
+  test('Get Authorization Code Fail Because unsupported response type And Redirect Success', async () => {
     const redirectUri = 'https://oauth2-core/auth';
 
     const clientDataAccessor = new ClientDataAccessor();
