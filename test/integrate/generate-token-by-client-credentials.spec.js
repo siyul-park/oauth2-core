@@ -15,7 +15,7 @@ describe('Generate Token By Client Credentials', () => {
 
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['accessToken:create', 'test'],
     }));
 
     const server = createServer(clientDataAccessor);
@@ -42,7 +42,7 @@ describe('Generate Token By Client Credentials', () => {
 
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['accessToken:create', 'test'],
     }));
 
     const server = createServer(clientDataAccessor);
@@ -68,7 +68,7 @@ describe('Generate Token By Client Credentials', () => {
 
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['accessToken:create', 'test'],
     }));
 
     const server = createServer(clientDataAccessor);

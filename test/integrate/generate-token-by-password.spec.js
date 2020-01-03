@@ -18,7 +18,7 @@ describe('Generate Token By Password', () => {
 
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['accessToken:create', 'refreshToken:create', 'test'],
     }));
     const user = await userDataAccessor.insert(new User({
       name: 'test',
@@ -54,7 +54,7 @@ describe('Generate Token By Password', () => {
 
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['accessToken:create', 'refreshToken:create', 'test'],
     }));
     const user = await userDataAccessor.insert(new User({
       name: 'test',
@@ -90,7 +90,7 @@ describe('Generate Token By Password', () => {
     const user = await userDataAccessor.insert(new User({
       name: 'test',
       password: 'test-password',
-      scope: ['test'],
+      scope: ['accessToken:create', 'refreshToken:create', 'test'],
     }));
 
     const server = createServer(clientDataAccessor, userDataAccessor);
@@ -119,7 +119,7 @@ describe('Generate Token By Password', () => {
     const user = await userDataAccessor.insert(new User({
       name: 'test',
       password: 'test-password',
-      scope: ['test'],
+      scope: ['accessToken:create', 'refreshToken:create', 'test'],
     }));
 
     const server = createServer(clientDataAccessor, userDataAccessor);
@@ -145,7 +145,7 @@ describe('Generate Token By Password', () => {
     const user = await userDataAccessor.insert(new User({
       name: 'test',
       password: 'test-password',
-      scope: ['test'],
+      scope: ['accessToken:create', 'refreshToken:create', 'test'],
     }));
 
     const server = createServer(clientDataAccessor, userDataAccessor);

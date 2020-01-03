@@ -17,7 +17,7 @@ describe('Generate Token By Implicit Grant', () => {
 
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['accessToken:create', 'test'],
       redirectUri,
     }));
 
@@ -58,7 +58,7 @@ describe('Generate Token By Implicit Grant', () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['accessToken:create', 'test'],
       redirectUri,
     }));
 
@@ -96,7 +96,7 @@ describe('Generate Token By Implicit Grant', () => {
   test('Generate Token Success By Public Client', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['accessToken:create', 'test'],
     }));
 
     const server = createServer(clientDataAccessor);
@@ -125,7 +125,7 @@ describe('Generate Token By Implicit Grant', () => {
 
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['accessToken:create', 'test'],
       redirectUri,
     }));
 
@@ -173,7 +173,7 @@ describe('Generate Token By Implicit Grant', () => {
 
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['accessToken:create', 'test'],
       redirectUri,
     }));
 

@@ -15,7 +15,7 @@ describe('Get Authorization Code', () => {
   test('Get Authorization Code Success', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
     }));
 
     const server = createServer(clientDataAccessor);
@@ -39,7 +39,7 @@ describe('Get Authorization Code', () => {
   test('Post Authorization Code Success', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
     }));
     const server = createServer(clientDataAccessor);
     const state = Math.random();
@@ -64,7 +64,7 @@ describe('Get Authorization Code', () => {
 
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
     const server = createServer(clientDataAccessor);
@@ -100,7 +100,7 @@ describe('Get Authorization Code', () => {
 
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
     const server = createServer(clientDataAccessor);
@@ -163,7 +163,7 @@ describe('Get Authorization Code', () => {
   test('Post Authorization Code Fail Because unsupported response type', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
     }));
     const server = createServer(clientDataAccessor);
     const state = Math.random();
@@ -185,7 +185,7 @@ describe('Get Authorization Code', () => {
   test('Post Authorization Code Fail Because method not allow 1', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
     }));
     const server = createServer(clientDataAccessor);
     const state = Math.random();
@@ -207,7 +207,7 @@ describe('Get Authorization Code', () => {
   test('Post Authorization Code Fail Because method not allow 2', async () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
     }));
     const server = createServer(clientDataAccessor);
     const state = Math.random();
@@ -231,7 +231,7 @@ describe('Get Authorization Code', () => {
 
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
     const server = createServer(clientDataAccessor);

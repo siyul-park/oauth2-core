@@ -18,7 +18,7 @@ describe('Generate Token By Authorization Code', () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
 
@@ -51,7 +51,7 @@ describe('Generate Token By Authorization Code', () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
 
@@ -81,7 +81,7 @@ describe('Generate Token By Authorization Code', () => {
 
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
 
@@ -107,7 +107,7 @@ describe('Generate Token By Authorization Code', () => {
 
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
 
@@ -134,7 +134,7 @@ describe('Generate Token By Authorization Code', () => {
 
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
       secret: 'SECRET',
     }));
@@ -161,9 +161,9 @@ describe('Generate Token By Authorization Code', () => {
 
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
-      secret: 'SECRET',
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
+      secret: 'SECRET',
     }));
 
     const server = createServer(clientDataAccessor);

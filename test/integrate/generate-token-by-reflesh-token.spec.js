@@ -18,7 +18,7 @@ describe('Generate Token By Refresh Token', () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
 
@@ -52,7 +52,7 @@ describe('Generate Token By Refresh Token', () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
 
@@ -85,7 +85,7 @@ describe('Generate Token By Refresh Token', () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
 
@@ -97,7 +97,7 @@ describe('Generate Token By Refresh Token', () => {
 
     const otherClient = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
 
@@ -123,7 +123,7 @@ describe('Generate Token By Refresh Token', () => {
     const clientDataAccessor = new ClientDataAccessor();
     const client = await clientDataAccessor.insert(new Client({
       secret: 'SECRET',
-      scope: ['test'],
+      scope: ['authorizationCode:create', 'accessToken:create', 'refreshToken:create', 'test'],
       redirectUri,
     }));
 
