@@ -335,11 +335,62 @@ class JobManager {
 
 ​	The authorization code grant type is used to obtain both access tokens and refresh tokens and is optimized for confidential clients. - [rfc6749](https://tools.ietf.org/html/rfc6749#section-4.1)
 
-### Authorization
+### Use redirection
 
-#### Request
+#### Authorization
 
-##### By GET Method
+##### Request
+
+###### By GET Method
+
+```js
+const response = await server.authorize(new Request({
+  method: requestMethod.GET,
+  query: {
+    response_type: responseType.CODE,
+    client_id: client.id,
+    state,
+    scope,
+    redirect_uri,
+  },
+}));
+```
+
+###### By POST Method
+
+```js
+const response = await server.authorize(new Request({
+  method: requestMethod.POST,
+  body: {
+    response_type: responseType.CODE,
+    client_id: client.id,
+    state,
+    scope,
+    redirect_uri,
+  },
+}));
+```
+
+##### Response
+
+```js
+response = {
+  status: 302,
+  headers: {
+    Location: 'https://example.auth2-core/auth?code=code&state=state'
+  }
+};
+```
+
+​    
+
+### Not use redirection
+
+#### Authorization
+
+##### Request
+
+###### By GET Method
 
 ```js
 const response = await server.authorize(new Request({
@@ -353,7 +404,7 @@ const response = await server.authorize(new Request({
 }));
 ```
 
-##### By POST Method
+###### By POST Method
 
 ```js
 const response = await server.authorize(new Request({
@@ -367,18 +418,19 @@ const response = await server.authorize(new Request({
 }));
 ```
 
-#### Response
+##### Response
 
 ```js
 response = {
-  status: 302,
-  headers: {
-    Location: 'https://example.auth2-core/auth?code=code&state=state'
+  status: 200 | 201,
+  body: {
+    code,
+    state
   }
 };
 ```
 
-​    
+
 
 ### Access Token
 
@@ -436,7 +488,7 @@ response = {
 
 ​	The implicit grant type is used to obtain access tokens (it does not support the issuance of refresh tokens) and is optimized for public clients known to operate a particular redirection URI.  These clients are typically implemented in a browser using a scripting language such as JavaScript.  - [rfc6749](https://tools.ietf.org/html/rfc6749#section-4.2)
 
-### Use Redirect 
+### Use redirection
 
 #### Authorization Request
 
@@ -472,7 +524,7 @@ const response = await server.authorize(new Request({
 
 ```
 
-#### Response
+#### Access Token Response
 
 ```js
 response = {
@@ -485,7 +537,7 @@ response = {
 
 ​    
 
-### Not Use Redirect
+### Not use redirection
 
 #### Authorization Request
 
@@ -502,7 +554,7 @@ const response = await server.authorize(new Request({
 
 ```
 
-#### Response
+#### Access Token Response
 
 ```js
 response = {
