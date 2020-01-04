@@ -52,6 +52,46 @@ describe('Generate Token By Implicit Grant', () => {
     expect(Number.parseFloat(query.state)).toEqual(state);
   });
 
+  test('Generate Token Success By Public Client With Redirect URI, POST Method', async () => {
+    const redirectUri = 'https://oauth2-core/auth';
+
+    const clientDataAccessor = new ClientDataAccessor();
+    const client = await clientDataAccessor.insert(new Client({
+      scope: ['accessToken:create', 'test'],
+      redirectUri,
+    }));
+
+    const server = createServer(clientDataAccessor);
+    const state = Math.random();
+
+    const response = await server.authorize(new Request({
+      method: requestMethod.POST,
+      body: {
+        response_type: responseType.TOKEN,
+        client_id: client.id,
+        state,
+        scope: ['test'],
+        redirect_uri: client.redirectUri,
+      },
+    }));
+
+    expect(response.status).toEqual(302);
+
+    const location = response.get('Location');
+    expect(location).toBeTruthy();
+
+    const uriAndQuery = location.split('?');
+    const uri = uriAndQuery[0];
+    const query = queryString.parse(uriAndQuery[1]);
+
+    expect(uri).toEqual(redirectUri);
+    expect(query.access_token).toEqual(expect.stringMatching(/[a-z0-9]+/));
+    expect(query.token_type).toEqual('bearer');
+    expect(query.expires_in).toBeTruthy();
+    expect(query.scope).toEqual('test');
+    expect(Number.parseFloat(query.state)).toEqual(state);
+  });
+
   test('Generate Token Success By Confidential Client With Redirect URI', async () => {
     const redirectUri = 'https://oauth2-core/auth';
 

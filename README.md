@@ -434,10 +434,28 @@ response = {
 
 #### Authorization Request
 
+##### By GET Method
+
 ```js
 const response = await server.authorize(new Request({
   method: requestMethod.GET,
   query: {
+    response_type: responseType.TOKEN,
+    client_id: client.id,
+    state,
+    scope,
+    redirect_uri: client.redirectUri,
+  },
+}));
+
+```
+
+##### By POST Method
+
+```js
+const response = await server.authorize(new Request({
+  method: requestMethod.POST,
+  body: {
     response_type: responseType.TOKEN,
     client_id: client.id,
     state,
