@@ -174,12 +174,19 @@ class MockClientDataAccessor extends ClientDataAccessor {
 ```js
 class Client {
   constructor(options = {
-    id: null, secret: null, scope: [], redirectUri: null,
+    id: null, secret: null, scope: [], redirectUri: null, type: null,
   }) {
     this.id = options.id;
     this.secret = options.secret;
     this.scope = options.scope;
     this.redirectUri = options.redirectUri;
+
+    if (options.type === null) {
+      if (options.secret === null) this.type = clientType.PUBLIC;
+      else this.type = clientType.CONFIDENTIAL;
+    } else {
+      this.type = options.type;
+    }
   }
 
   authenticate(secret) {
@@ -364,10 +371,9 @@ const response = await server.authorize(new Request({
 
 ```js
 response = {
-  status: 200,
-  body: {
-    code,
-    state,
+  status: 302,
+  headers: {
+    Location: 'https://example.auth2-core/auth?code=code&state=state'
   }
 };
 ```
